@@ -1,0 +1,70 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: taller-gitops
+  namespace: vp-gitops
+spec:
+  generators:
+    - list:
+        elements:
+          - usuario: user01
+            namespace: ws-user01
+            ruta: apps/posicion/user01
+          - usuario: user02
+            namespace: ws-user02
+            ruta: apps/posicion/user02
+          - usuario: user03
+            namespace: ws-user03
+            ruta: apps/posicion/user03
+          - usuario: user04
+            namespace: ws-user04
+            ruta: apps/posicion/user04
+          - usuario: user05
+            namespace: ws-user05
+            ruta: apps/posicion/user05
+          - usuario: user06
+            namespace: ws-user06
+            ruta: apps/posicion/user06
+          - usuario: user07
+            namespace: ws-user07
+            ruta: apps/posicion/user07
+          - usuario: user08
+            namespace: ws-user08
+            ruta: apps/posicion/user08
+          - usuario: user09
+            namespace: ws-user09
+            ruta: apps/posicion/user09
+          - usuario: user10
+            namespace: ws-user10
+            ruta: apps/posicion/user10
+          - usuario: user11
+            namespace: ws-user11
+            ruta: apps/posicion/user11
+          - usuario: user12
+            namespace: ws-user12
+            ruta: apps/posicion/user12
+          - usuario: user13
+            namespace: ws-user13
+            ruta: apps/posicion/user13
+          - usuario: user14
+            namespace: ws-user14
+            ruta: apps/posicion/user14
+          - usuario: user15
+            namespace: ws-user15
+            ruta: apps/posicion/user15
+  template:
+    metadata:
+      name: app-{{usuario}}
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/Atziri-Cruz/demo-Gitops.git
+        targetRevision: main
+        path: "{{ruta}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
