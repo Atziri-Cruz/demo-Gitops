@@ -58,7 +58,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/Atziri-Cruz/demo-Gitops.git
+        repoURL: https://gitea-route-vp-gitea.apps.cluster-zbmtf.zbmtf.sandbox1789.opentlc.com/gitea_admin/demo-gitops.git
         targetRevision: main
         path: "{{ruta}}"
       destination:
